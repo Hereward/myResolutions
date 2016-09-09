@@ -54,7 +54,7 @@ export default class ResolutionSingle extends Component {
 				<form className="new-resolution" onSubmit={this.updateResolutionText.bind(this)}>
 					<input 
 	                    defaultValue = {this.props.resolution.text}
-	                    onChange = {this.handleChange.bind(this)}
+	                    onBlur = {this.handleChange.bind(this)}
 						type="text" 
 						ref="text"
 						placeholder="Finish React Meteor Series" />
