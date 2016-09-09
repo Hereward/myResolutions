@@ -24,10 +24,9 @@ export default class ResolutionSingle extends Component {
 	}	
 
 
-	handleChange () {
-	 	//this.setState({value: event.target.value});
-	 	// this.updateResolutionText.bind(this);
-	 	console.log("Handle Change");
+	handleChange (event) {
+	 	this.updateResolutionText(event);
+	 	//console.log("Handle Change");
 	}
 
 	componentDidMount() {
@@ -55,7 +54,7 @@ export default class ResolutionSingle extends Component {
 				<form className="new-resolution" onSubmit={this.updateResolutionText.bind(this)}>
 					<input 
 	                    defaultValue = {this.props.resolution.text}
-	                    onChange={this.handleChange()}
+	                    onChange = {this.handleChange.bind(this)}
 						type="text" 
 						ref="text"
 						placeholder="Finish React Meteor Series" />
