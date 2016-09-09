@@ -23,18 +23,48 @@ export default class ResolutionSingle extends Component {
 		Meteor.call('updateResolutionText', this.props.resolution, this.refs.text.value);
 	}	
 
+	nothing(event) {
+		event.preventDefault();
+	}
+
+	saveResolution(event) {
+		console.log("saveResolution");
+		this.updateResolutionText(event);
+		$(`#${this.text_form_id}`).hide();
+		$(`#${this.text_id}`).show();
+		$(`#${this.text_save_icon_id}`).hide();
+	}
+
 
 	handleChange (event) {
 	 	this.updateResolutionText(event);
 	 	//console.log("Handle Change");
 	}
 
-	componentDidMount() {
-	 	 this.state.text = this.props.resolution.text;
+	componentWillMount() {
+		this.text_id = this.props.resolution._id+'_text';
+		this.text_input_id = this.props.resolution._id+'_input';
+		this.text_form_id = this.props.resolution._id+'_form';
+		this.text_save_icon_id = this.props.resolution._id+'_save';
+	 	//this.state.text = this.props.resolution.text;
 	}
 
 	updateState() {
 		this.state.text = this.props.resolution.text;
+	}
+
+	editResolution(event) {
+		console.log("Edit Resolution " + this.text_form_id);
+		//$("#login").css('visibility', 'hidden');
+        //$(".register").css('visibility', 'visible');
+
+        //{this.text_id}
+        
+        $(`#${this.text_id}`).hide();
+        $(`#${this.text_form_id}`).css( "display", "inline");
+        $(`#${this.text_save_icon_id}`).show();
+        //$(`#${this.text_form_id}`).show();
+        //$({this.text_input_id}).show();
 	}
 
 
@@ -43,6 +73,7 @@ export default class ResolutionSingle extends Component {
 	render() {
 		const resolutionClass = this.props.resolution.complete ? "checked" : "";
 		const status = this.props.resolution.complete ? <span className="completed">Completed</span> : '';
+		
 
 		return (
 			<li className={resolutionClass}>
@@ -50,11 +81,14 @@ export default class ResolutionSingle extends Component {
 					readOnly={true}
 					checked={this.props.resolution.complete}
 					onClick={this.toggleChecked.bind(this)} />
-				{this.props.resolution.text} <br/>
-				<form className="new-resolution" onSubmit={this.updateResolutionText.bind(this)}>
+				&nbsp; <i onClick={this.editResolution.bind(this)} className="fa fa-edit editIcon"></i> &nbsp;
+				<i id={this.text_save_icon_id} onClick={this.saveResolution.bind(this)} className="fa fa-check-square saveIcon">&nbsp;</i>
+				<span id={this.text_id}>{this.props.resolution.text}</span>
+			
+				<form id={this.text_form_id} className="hiddenInputForm" onSubmit={this.nothing.bind(this)}>
 					<input 
-	                    defaultValue = {this.props.resolution.text}
-	                    onBlur = {this.handleChange.bind(this)}
+					    id = {this.text_input_id}
+	                    defaultValue = {this.props.resolution.text}  
 						type="text" 
 						ref="text"
 						placeholder="Finish React Meteor Series" />
@@ -68,3 +102,6 @@ export default class ResolutionSingle extends Component {
 		);
 	}
 }
+
+// onSubmit={this.updateResolutionText.bind(this)}
+// onBlur = {this.handleChange.bind(this)}

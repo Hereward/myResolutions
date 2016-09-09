@@ -6,7 +6,7 @@ export const MainLayout = ({content}) => (
 		<header>
 			<h2>My Resolutions</h2>
 			<nav>
-				<a href="/">Resolutions</a>
+				<a href="/"><i className="fa fa-home"></i></a>
 				<a href="/about">About</a>
 				<AccountsUI />
 			</nav>
