@@ -2,6 +2,13 @@ import React, {Component} from 'react';
 
 export default class ResolutionSingle extends Component {
 
+	constructor() {
+		super();
+		this.state = {
+			text: ''
+		}
+	}
+
 	toggleChecked() {
 		Meteor.call('toggleResolution', this.props.resolution);
 	}
@@ -12,17 +19,25 @@ export default class ResolutionSingle extends Component {
 
 	updateResolutionText(event) {
 		event.preventDefault();
-		console.log("updateResolutionText " + this.props.resolution.text);
-		Meteor.call('updateResolutionText', this.props.resolution);
+		console.log("updateResolutionText " + this.refs.text.value);
+		Meteor.call('updateResolutionText', this.props.resolution, this.refs.text.value);
 	}	
 
 
 	handleChange () {
 	 	//this.setState({value: event.target.value});
-	 	//this.updateResolutionText.bind(this);
-
+	 	// this.updateResolutionText.bind(this);
 	 	console.log("Handle Change");
 	}
+
+	componentDidMount() {
+	 	 this.state.text = this.props.resolution.text;
+	}
+
+	updateState() {
+		this.state.text = this.props.resolution.text;
+	}
+
 
 	// <a href={`/resolutions/${this.props.resolution._id}`}>{this.props.resolution.text}</a>
 
@@ -39,11 +54,10 @@ export default class ResolutionSingle extends Component {
 				{this.props.resolution.text} <br/>
 				<form className="new-resolution" onSubmit={this.updateResolutionText.bind(this)}>
 					<input 
-	                    id = {this.props.resolution._id}
 	                    defaultValue = {this.props.resolution.text}
 	                    onChange={this.handleChange()}
 						type="text" 
-						ref="resolution"
+						ref="text"
 						placeholder="Finish React Meteor Series" />
 				</form>
 				{status}

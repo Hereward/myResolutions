@@ -11,13 +11,13 @@ Meteor.methods({
 			user: Meteor.userId()
 		});		
 	},
-	updateResolutionText(resolution) {
+	updateResolutionText(resolution, newValue) {
 		check(resolution, Object);
 		if(!Meteor.userId()) {
 			throw new Meteor.Error('not-authorized');
 		}
 		Resolutions.update(resolution._id, {
-			$set: {text: resolution.text}
+			$set: {text: newValue}
 		});	
 	},
 	toggleResolution(resolution) {
