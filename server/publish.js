@@ -7,3 +7,5 @@ Meteor.publish("allResolutions", function(){
 Meteor.publish("userResolutions", function(){
 	return Resolutions.find({user: this.userId});
 });
+
+// console.log(Meteor.settings.private.ptest);
