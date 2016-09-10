@@ -4,6 +4,10 @@ export default class ResolutionSingle extends Component {
 
 	constructor() {
 		super();
+		this.state = {
+			text: '',
+			editing:false
+		}
 	}
 
 	toggleChecked() {
@@ -15,7 +19,6 @@ export default class ResolutionSingle extends Component {
 	}	
 
 	updateResolutionText(event) {
-		event.preventDefault();
 		console.log("updateResolutionText " + this.refs.text.value);
 		Meteor.call('updateResolutionText', this.props.resolution, this.refs.text.value);
 	}	
@@ -24,39 +27,32 @@ export default class ResolutionSingle extends Component {
 	saveResolution(event) {
 		console.log("saveResolution");
 		this.updateResolutionText(event);
-		$(`#${this.text_input_id}`).hide();
-		$(`#${this.text_id}`).show();
-		$(`#${this.text_save_icon_id}`).hide();
+		this.setState({editing: false});
 	}
 
 
 	handleChange (event) {
 	 	this.updateResolutionText(event);
-	 	//console.log("Handle Change");
 	}
 
 	componentWillMount() {
-		this.text_id = this.props.resolution._id+'_text';
-		this.text_input_id = this.props.resolution._id+'_input';
-		this.text_save_icon_id = this.props.resolution._id+'_save';
+
 	}
 
 
 	editResolution(event) {
-		console.log("Edit Resolution " + this.text_form_id);
-        $(`#${this.text_id}`).hide();
-        $(`#${this.text_input_id}`).show();
-        //$(`#${this.text_form_id}`).css( "display", "inline");
-        $(`#${this.text_save_icon_id}`).show();
+		console.log("Edit Resolution");
+        this.setState({editing: true});
 	}
 
-
-	// <a href={`/resolutions/${this.props.resolution._id}`}>{this.props.resolution.text}</a>
 
 	render() {
 		const resolutionClass = this.props.resolution.complete ? "checked" : "";
 		const status = this.props.resolution.complete ? <span className="completed">Completed</span> : '';
-		
+		const saveIconClass = this.state.editing ? "saveIconEditing" : "";
+		const hiddenInputClass = this.state.editing ? "hiddenInputShow" : "";
+		const resolutionTextClass = this.state.editing ? "resolutionTextEditing" : "resolutionText";
+
 
 		return (
 			<li className={resolutionClass}>
@@ -65,12 +61,11 @@ export default class ResolutionSingle extends Component {
 					checked={this.props.resolution.complete}
 					onClick={this.toggleChecked.bind(this)} />
 				&nbsp; <i onClick={this.editResolution.bind(this)} className="fa fa-edit editIcon"></i> &nbsp;
-				<i id={this.text_save_icon_id} onClick={this.saveResolution.bind(this)} className="fa fa-check-square saveIcon">&nbsp;</i>
-				<span id={this.text_id}>{this.props.resolution.text}</span>
+				<i onClick={this.saveResolution.bind(this)} className={"fa fa-check-square saveIcon " + saveIconClass}>&nbsp;</i>
+				<span className={resolutionTextClass}>{this.props.resolution.text}</span>
 			
 					<input 
-					    className = "hiddenInput"
-					    id = {this.text_input_id}
+					    className = {"hiddenInput " + hiddenInputClass}
 	                    defaultValue = {this.props.resolution.text}  
 						type="text" 
 						ref="text"
