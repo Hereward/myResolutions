@@ -4,9 +4,6 @@ export default class ResolutionSingle extends Component {
 
 	constructor() {
 		super();
-		this.state = {
-			text: ''
-		}
 	}
 
 	toggleChecked() {
@@ -23,14 +20,11 @@ export default class ResolutionSingle extends Component {
 		Meteor.call('updateResolutionText', this.props.resolution, this.refs.text.value);
 	}	
 
-	nothing(event) {
-		event.preventDefault();
-	}
 
 	saveResolution(event) {
 		console.log("saveResolution");
 		this.updateResolutionText(event);
-		$(`#${this.text_form_id}`).hide();
+		$(`#${this.text_input_id}`).hide();
 		$(`#${this.text_id}`).show();
 		$(`#${this.text_save_icon_id}`).hide();
 	}
@@ -44,27 +38,16 @@ export default class ResolutionSingle extends Component {
 	componentWillMount() {
 		this.text_id = this.props.resolution._id+'_text';
 		this.text_input_id = this.props.resolution._id+'_input';
-		this.text_form_id = this.props.resolution._id+'_form';
 		this.text_save_icon_id = this.props.resolution._id+'_save';
-	 	//this.state.text = this.props.resolution.text;
 	}
 
-	updateState() {
-		this.state.text = this.props.resolution.text;
-	}
 
 	editResolution(event) {
 		console.log("Edit Resolution " + this.text_form_id);
-		//$("#login").css('visibility', 'hidden');
-        //$(".register").css('visibility', 'visible');
-
-        //{this.text_id}
-        
         $(`#${this.text_id}`).hide();
-        $(`#${this.text_form_id}`).css( "display", "inline");
+        $(`#${this.text_input_id}`).show();
+        //$(`#${this.text_form_id}`).css( "display", "inline");
         $(`#${this.text_save_icon_id}`).show();
-        //$(`#${this.text_form_id}`).show();
-        //$({this.text_input_id}).show();
 	}
 
 
@@ -85,14 +68,13 @@ export default class ResolutionSingle extends Component {
 				<i id={this.text_save_icon_id} onClick={this.saveResolution.bind(this)} className="fa fa-check-square saveIcon">&nbsp;</i>
 				<span id={this.text_id}>{this.props.resolution.text}</span>
 			
-				<form id={this.text_form_id} className="hiddenInputForm" onSubmit={this.nothing.bind(this)}>
 					<input 
+					    className = "hiddenInput"
 					    id = {this.text_input_id}
 	                    defaultValue = {this.props.resolution.text}  
 						type="text" 
 						ref="text"
 						placeholder="Finish React Meteor Series" />
-				</form>
 				{status}
 				<button className="btn-cancel"
 					onClick={this.deleteResolution.bind(this)}>
