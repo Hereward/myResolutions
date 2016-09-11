@@ -5,6 +5,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ResolutionsForm from './ResolutionsForm.jsx';
 import ResolutionSingle from './ResolutionSingle.jsx';
 
+import { FilesCollection } from 'meteor/ostrio:files';
+
 
 Resolutions = new Mongo.Collection("resolutions");
 
@@ -22,9 +24,31 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 
     	this.state = {
     		subscription:  {
-    			resolutions: Meteor.subscribe("userResolutions")
+    			resolutions: Meteor.subscribe("userResolutions"),
+    			images: Meteor.subscribe("Images")
     		}
     	};
+
+
+
+		this.Images = new Meteor.Files({
+		  debug: true,
+		  collectionName: 'Images',
+		  allowClientCode: false, // Disallow remove files from Client
+		  storagePath: '../../../../../.storage/images',
+		  onBeforeUpload: function (file) {
+		    // Allow upload files under 10MB, and only in png/jpg/jpeg formats
+		    if (file.size <= 1024*1024*10 && /png|jpg|jpeg/i.test(file.extension)) {
+		      return true;
+		    } else {
+		      return 'Please upload image, with size equal or less than 10MB';
+		    }
+		  }
+		});
+
+
+
+
     	//this.myResolutions = '';
     	//this.mySillyArray = Array();
     }

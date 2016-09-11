@@ -7,3 +7,6 @@ node_modules/
 # Config
 settings.json
 
+#Storage
+.storage
+

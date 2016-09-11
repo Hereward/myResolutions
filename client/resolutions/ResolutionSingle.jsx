@@ -60,9 +60,10 @@ export default class ResolutionSingle extends Component {
 					readOnly={true}
 					checked={this.props.resolution.complete}
 					onClick={this.toggleChecked.bind(this)} />
-				&nbsp; <i onClick={this.editResolution.bind(this)} className="fa fa-edit editIcon"></i> &nbsp;
-				<i onClick={this.saveResolution.bind(this)} className={"fa fa-check-square saveIcon " + saveIconClass}>&nbsp;</i>
-				<span className={resolutionTextClass}>{this.props.resolution.text}</span>
+					&nbsp; <a href={`/resolutions/${this.props.resolution._id}`}><i className={"fa fa-image imageIcon"}>&nbsp;</i></a>
+					&nbsp; <i onClick={this.editResolution.bind(this)} className="fa fa-edit editIcon"></i> &nbsp;
+					<i onClick={this.saveResolution.bind(this)} className={"fa fa-check-square saveIcon " + saveIconClass}>&nbsp;</i>
+					<span className={resolutionTextClass}>{this.props.resolution.text}</span>
 			
 					<input 
 					    className = {"hiddenInput " + hiddenInputClass}

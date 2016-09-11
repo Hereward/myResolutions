@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import UploadForm from './UploadForm.jsx';
 
 export default class ResolutionDetail extends TrackerReact(Component) {
 	constructor() {
@@ -29,6 +30,7 @@ export default class ResolutionDetail extends TrackerReact(Component) {
 		return (
 			<div>
 				<h1>{res.text}</h1>
+				<UploadForm />
 			</div>
 		)
 	}
