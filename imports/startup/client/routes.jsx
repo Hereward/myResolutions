@@ -1,15 +1,16 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import {MainLayout} from './layouts/MainLayout.jsx';
-import ResolutionsWrapper from './resolutions/ResolutionsWrapper.jsx';
-import About from './About.jsx';
-import ResolutionDetail from './resolutions/ResolutionDetail.jsx';
+import {MainLayout} from '../../ui/layouts/MainLayout.jsx';
+import Index from '../../ui/pages/Index.jsx';
+import About from '../../ui/pages/About.jsx';
+import ResolutionDetail from '../../ui/pages/ResolutionDetail.jsx';
+
 
 FlowRouter.route('/', { 
 	action() {
 		mount(MainLayout, {
-			content: (<ResolutionsWrapper />)
+			content: (<Index />)
 		});
     }
 });

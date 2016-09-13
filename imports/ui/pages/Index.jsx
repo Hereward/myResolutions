@@ -2,17 +2,19 @@ import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import ResolutionsForm from './ResolutionsForm.jsx';
-import ResolutionSingle from './ResolutionSingle.jsx';
+import { Resolutions } from '../../api/resolutions.js';
 
-import { FilesCollection } from 'meteor/ostrio:files';
+import ResolutionsForm from '../components/ResolutionsForm.jsx';
+import ResolutionSingle from '../components/ResolutionSingle.jsx';
+
+//import { FilesCollection } from 'meteor/ostrio:files';
 
 
-Resolutions = new Mongo.Collection("resolutions");
+//Resolutions = new Mongo.Collection("resolutions");
 
 //this.myResolutions = '';
 
-export default class ResolutionsWrapper extends TrackerReact(React.Component) {
+export default class Index extends TrackerReact(React.Component) {
 	//let myResolutions = Resolutions.find().fetch();
    //this.myResolutions = Resolutions.find().fetch();
    //myResolutions = Resolutions.find().fetch();
@@ -22,15 +24,22 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
     constructor() {
     	super();
 
+    	//this.state = new ReactiveDict();
+  		Meteor.subscribe('userResolutions');
+
+  		this.state = {};
+
+/*
     	this.state = {
     		subscription:  {
     			resolutions: Meteor.subscribe("userResolutions"),
     			images: Meteor.subscribe("Images")
     		}
     	};
+*/
 
 
-
+/*
 		this.Images = new Meteor.Files({
 		  debug: true,
 		  collectionName: 'Images',
@@ -45,7 +54,7 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 		    }
 		  }
 		});
-
+*/
 
 
 
@@ -55,7 +64,7 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 
   
 	componentWillUnmount() {
-	  	this.state.subscription.resolutions.stop();
+	  	// this.state.subscription.resolutions.stop();
 	}
     
 

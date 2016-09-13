@@ -1,5 +1,6 @@
 # Meteor 
 node_modules/
+.meteor-ignore
 
 # Sublime Text
 .eslintrc.json

@@ -1,3 +1,24 @@
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
+ 
+export const Resolutions = new Mongo.Collection('resolutions');
+
+
+if (Meteor.isServer) {
+  // This code only runs on the server
+	Meteor.publish("allResolutions", function allResolutionsPublication(){
+		return Resolutions.find();
+	});
+
+	Meteor.publish("userResolutions", function userResolutionsPublication(){
+		return Resolutions.find({user: this.userId});
+	});
+
+}
+
+console.log('publish');
+
+
 Meteor.methods({
 	addResolution(resolution) {
 		check(resolution, String);
@@ -38,3 +59,7 @@ Meteor.methods({
 	}
 
 });
+
+
+
+// Resolutions = new Mongo.Collection("resolutions");

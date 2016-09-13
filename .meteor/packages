@@ -32,3 +32,6 @@ themeteorchef:bert
 check
 #gwendall:blaze-to-react
 ostrio:files
+reactive-dict
+underscore
+react-meteor-data

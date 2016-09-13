@@ -1,5 +1,5 @@
 import React from 'react';
-import AccountsUI from '../AccountsUI.jsx';
+import AccountsUI from '../../startup/both/AccountsUI.jsx';
 
 export const MainLayout = ({content}) => (
 	<div className="main-layout">
