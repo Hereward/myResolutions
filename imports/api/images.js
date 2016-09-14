@@ -30,9 +30,10 @@ if (Meteor.isServer) {
     return Images.find().cursor;
   });
 
+
 } else {
 
-  Meteor.subscribe('allImages');
+  //Meteor.subscribe('allImages');
 }
 
 

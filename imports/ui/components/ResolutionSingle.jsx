@@ -56,10 +56,13 @@ export default class ResolutionSingle extends Component {
 
 		return (
 			<li className={resolutionClass}>
+			    
 				<input type="checkbox"
 					readOnly={true}
 					checked={this.props.resolution.complete}
 					onClick={this.toggleChecked.bind(this)} />
+
+					
 					&nbsp; <a href={`/resolutions/${this.props.resolution._id}`}><i className={"fa fa-image imageIcon"}>&nbsp;</i></a>
 					&nbsp; <i onClick={this.editResolution.bind(this)} className="fa fa-edit editIcon"></i> &nbsp;
 					<i onClick={this.saveResolution.bind(this)} className={"fa fa-check-square saveIcon " + saveIconClass}>&nbsp;</i>
@@ -76,6 +79,8 @@ export default class ResolutionSingle extends Component {
 					onClick={this.deleteResolution.bind(this)}>
 					&times;
 				</button>
+				<br/> <img className='imageThumb' src={this.props.link} alt='image' />
+
 			</li>
 		);
 	}

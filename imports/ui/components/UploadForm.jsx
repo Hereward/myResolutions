@@ -3,6 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import IndividualFile from './FileIndividualFile.jsx';
 import {_} from 'meteor/underscore';
 import { Images } from '../../api/images.js';
+import { Resolutions } from '../../api/resolutions.js';
 
 const UploadForm = React.createClass({
   mixins: [ReactMeteorData],
@@ -12,14 +13,35 @@ const UploadForm = React.createClass({
       uploading: [],
       progress: 0,
       inProgress: false
-    }
+    };
+  },
+
+  updateResolution(fileObj) {
+    console.log(`updateResolution: ResolutionID = ${this.props.resolution._id} ImageID = ${fileObj._id}`);
+    Meteor.call('updateResolutionImage', this.props.resolution, fileObj._id);
+
   },
 
   getMeteorData() {
+      console.log(`getMeteorData: IMAGE ID= ${this.props.resolution.image_id}`);
+      
+    /*
+    if (Meteor.isServer) {
+        Meteor.publish('resolutionImage', function () {
+            return Images.find().cursor;
+        //return Images.findOne(this.props.resolution.image_id).cursor;
+      });
+    }
+    */
+
+    // allImages
+    // resolutionImage
+    // docs: Images.find().fetch() // Collection is Images
+    
     var handle = Meteor.subscribe('allImages');
     return {
       docsReadyYet: handle.ready(),
-      docs: Images.find().fetch() // Collection is Images
+      docs: Images.find({_id: this.props.resolution.image_id}).fetch()
     };
   },
 
@@ -62,6 +84,8 @@ const UploadForm = React.createClass({
 
         uploadInstance.on('uploaded', function (error, fileObj) {
           console.log('uploaded: ', fileObj);
+          console.log('uploaded image ID: ', fileObj._id);
+          self.updateResolution(fileObj);
 
           // Remove the filename from the upload box
           self.refs['fileinput'].value = '';
@@ -83,7 +107,7 @@ const UploadForm = React.createClass({
           // Update our progress bar
           self.setState({
             progress: progress
-          })
+          });
         });
 
         uploadInstance.start(); // Must manually start the upload
@@ -109,7 +133,7 @@ const UploadForm = React.createClass({
             <span>{this.state.progress}%</span>
           </div>
         </div>
-      </div>
+      </div>;
     }
   },
 
@@ -135,10 +159,10 @@ const UploadForm = React.createClass({
             fileId={aFile._id}
             fileSize={aFile.size}
           />
-        </div>
+        </div>;
       });
 
-      return <div> <span>boo</span>
+      return <div> <span>RES ID =  {this.props.resolution._id} </span>
         <div className="row">
           <div className="col-md-12">
             <p>Upload New File:</p>
@@ -159,9 +183,9 @@ const UploadForm = React.createClass({
 
         {showit}
 
-      </div>
+      </div>;
     }
-    else return <div><span>not ready</span></div>
+    else return <div><span>Loading...</span></div>;
   }
 });
 console.log("hello");

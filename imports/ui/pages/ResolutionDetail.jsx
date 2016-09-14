@@ -19,6 +19,7 @@ export default class ResolutionDetail extends TrackerReact(Component) {
 	}
 
 	resolution() {
+
 		return Resolutions.findOne(this.props.id);
 	}
 
@@ -32,7 +33,7 @@ export default class ResolutionDetail extends TrackerReact(Component) {
 		return (
 			<div>
 				<h1>{res.text}</h1>
-				<UploadForm />
+				<UploadForm resolution={res} />
 			</div>
 		)
 	}

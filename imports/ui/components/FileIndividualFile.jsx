@@ -48,7 +48,7 @@ const IndividualFile = React.createClass({
     return <div className="m-t-sm">
       <div className="row">
         <div className="col-md-12">
-          <strong>{this.props.fileName}</strong>
+          <img src={this.props.fileUrl} alt={this.props.fileName} /> <br/><br/>
           <div className="m-b-sm">
           </div>
         </div>
@@ -81,3 +81,5 @@ const IndividualFile = React.createClass({
   }
 });
 export default IndividualFile;
+
+//<strong>{this.props.fileUrl}</strong>

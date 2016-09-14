@@ -103,6 +103,7 @@ templating-tools@1.0.4
 themeteorchef:bert@2.1.1
 tmeasday:check-npm-versions@0.2.0
 tracker@1.1.0
+twbs:bootstrap@3.3.6
 ui@1.0.11
 ultimatejs:tracker-react@1.0.5
 underscore@1.0.9

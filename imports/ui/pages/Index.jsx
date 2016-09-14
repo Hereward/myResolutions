@@ -6,6 +6,7 @@ import { Resolutions } from '../../api/resolutions.js';
 
 import ResolutionsForm from '../components/ResolutionsForm.jsx';
 import ResolutionSingle from '../components/ResolutionSingle.jsx';
+import { Images } from '../../api/images.js';
 
 //import { FilesCollection } from 'meteor/ostrio:files';
 
@@ -25,9 +26,24 @@ export default class Index extends TrackerReact(React.Component) {
     	super();
 
     	//this.state = new ReactiveDict();
-  		Meteor.subscribe('userResolutions');
+  		//Meteor.subscribe('userResolutions');
+  		//Meteor.subscribe('allImages');
+  		//Meteor.subscribe('post', this.props.postId)
 
-  		this.state = {};
+  		const resolutionsSub = Meteor.subscribe("userResolutions");
+  		const imagesSub = Meteor.subscribe('allImages');
+
+  		this.state = {
+  			imagesReady: imagesSub.ready(),
+  			resolutionsReady: resolutionsSub.ready(),
+			subscription: {
+				resolutions: resolutionsSub,
+				images: imagesSub
+			}
+		}
+
+		//imagesReady: imagesSub.ready(),
+		//images: imagesSub
 
 /*
     	this.state = {
@@ -62,6 +78,13 @@ export default class Index extends TrackerReact(React.Component) {
     	//this.mySillyArray = Array();
     }
 
+
+
+    componentWillUnmount() {
+    	this.state.subscription.resolutions.stop();
+    	this.state.subscription.images.stop();
+    }
+
   
 	componentWillUnmount() {
 	  	// this.state.subscription.resolutions.stop();
@@ -82,21 +105,44 @@ export default class Index extends TrackerReact(React.Component) {
 		let myResolutions = Resolutions.find().fetch();
 		myResolutions.forEach(
 			(resolution, index)=>{ 
-				//console.log(resolution._id);
-				output.push(<ResolutionSingle key={resolution._id} resolution={resolution} />);
+				let link = '';
+				if (resolution.image_id) {
+					console.log(`Image ID = ${resolution.image_id}`);
+				   
+				    let Obj = Images.findOne({_id: resolution.image_id});
+					if (Obj) {
+						link = Obj.link();
+						console.log(`LINK = ${link}`);
+					}
+				}
+				output.push(<ResolutionSingle key={resolution._id} resolution={resolution} link={link} />);
 			}
 		);
 
 		return output;
 	}
 
+	dataReady() {
+		return true;
+		if ((this.state.resolutionsReady) && (this.state.imagesReady)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	
 	render() {
+
+		//this.ResolutionsObj = Resolutions.find().fetch();
+		//this.ImagesObj = Images.find().fetch();
 		//this.myResolutions = this.resolutions();
 		//console.log(this.myResolutions);
 		
 		//console.log(this.mySillyArray);
-		return (
+
+		//if (this.dataReady()) {
+			return (
 			<ReactCSSTransitionGroup
 				component="div"
 				transitionName="route"
@@ -115,7 +161,13 @@ export default class Index extends TrackerReact(React.Component) {
 					{this.getMyResolutions()}
 				</ReactCSSTransitionGroup>  
 			</ReactCSSTransitionGroup>	
-		);
+		  );
+/*
+		} else {
+			return <div>Loading...</div>
+		}
+*/
+		
 	}
 }
 
