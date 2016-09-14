@@ -15,4 +15,4 @@ export const MainLayout = ({content}) => (
 			{content}
 		</main>
 	</div>
-)
+);

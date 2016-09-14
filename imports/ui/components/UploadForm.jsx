@@ -8,7 +8,7 @@ import { Resolutions } from '../../api/resolutions.js';
 const UploadForm = React.createClass({
   mixins: [ReactMeteorData],
 
-  getInitialState(){
+  getInitialState() {
     return {
       uploading: [],
       progress: 0,
@@ -23,29 +23,16 @@ const UploadForm = React.createClass({
   },
 
   getMeteorData() {
-      console.log(`getMeteorData: IMAGE ID= ${this.props.resolution.image_id}`);
-      
-    /*
-    if (Meteor.isServer) {
-        Meteor.publish('resolutionImage', function () {
-            return Images.find().cursor;
-        //return Images.findOne(this.props.resolution.image_id).cursor;
-      });
-    }
-    */
+    console.log(`getMeteorData: IMAGE ID= ${this.props.resolution.image_id}`);
 
-    // allImages
-    // resolutionImage
-    // docs: Images.find().fetch() // Collection is Images
-    
     var handle = Meteor.subscribe('allImages');
     return {
       docsReadyYet: handle.ready(),
-      docs: Images.find({_id: this.props.resolution.image_id}).fetch()
+      docs: Images.find({ _id: this.props.resolution.image_id }).fetch()
     };
   },
 
-  uploadIt(e){
+  uploadIt(e) {
     "use strict";
     e.preventDefault();
 
@@ -125,11 +112,11 @@ const UploadForm = React.createClass({
         {this.state.uploading.file.name}
 
         <div className="progress progress-bar-default">
-          <div style={{width: this.state.progress + '%'}} aria-valuemax="100"
-             aria-valuemin="0"
-             aria-valuenow={this.state.progress || 0} role="progressbar"
-             className="progress-bar">
-            <span className="sr-only">{this.state.progress}% Complete (success)</span>
+          <div style={{ width: this.state.progress + '%' }} aria-valuemax="100"
+            aria-valuemin="0"
+            aria-valuenow={this.state.progress || 0} role="progressbar"
+            className="progress-bar">
+            <span className="sr-only">{this.state.progress}% Complete (success) </span>
             <span>{this.state.progress}%</span>
           </div>
         </div>
@@ -149,7 +136,7 @@ const UploadForm = React.createClass({
       let showit = fileCursors.map((aFile, key) => {
         // console.log('A file: ', aFile.link(), aFile.get('name'));
 
-        let link = Images.findOne({_id: aFile._id}).link();  //The "view/download" link
+        let link = Images.findOne({ _id: aFile._id }).link();  //The "view/download" link
 
         // Send out components that show details of each file
         return <div key={'file' + key}>
@@ -158,23 +145,23 @@ const UploadForm = React.createClass({
             fileUrl={link}
             fileId={aFile._id}
             fileSize={aFile.size}
-          />
+            />
         </div>;
       });
 
       return <div> <span>RES ID =  {this.props.resolution._id} </span>
         <div className="row">
           <div className="col-md-12">
-            <p>Upload New File:</p>
+            <p>Upload New File: </p>
             <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
-                 onChange={this.uploadIt}/>
+              onChange={this.uploadIt}/>
           </div>
         </div>
 
         <div className="row m-t-sm m-b-sm">
           <div className="col-md-6">
 
-            {this.showUploads()}
+            {this.showUploads() }
 
           </div>
           <div className="col-md-6">
