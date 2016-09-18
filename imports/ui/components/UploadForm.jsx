@@ -32,6 +32,10 @@ const UploadForm = React.createClass({
     };
   },
 
+  getFromServer(e) {
+
+  },
+
   uploadIt(e) {
     "use strict";
     e.preventDefault();
@@ -149,12 +153,15 @@ const UploadForm = React.createClass({
         </div>;
       });
 
-      return <div> <span>RES ID =  {this.props.resolution._id} </span>
+//<span>RES ID =  {this.props.resolution._id} </span>
+      return <div> 
         <div className="row">
           <div className="col-md-12">
-            <p>Upload New File: </p>
+            <p><strong>Upload New File: </strong></p>
             <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
-              onChange={this.uploadIt}/>
+              onChange={this.uploadIt}/>  
+              <span> &nbsp; <input type="button" id="getfromserver" ref="getfromserver"
+              onClick={this.getFromServer} value="Get from server" /></span>
           </div>
         </div>
 

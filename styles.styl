@@ -194,7 +194,7 @@ p
             opacity 1
             shadow-level(2)
             border-color @background
-
+/*
 input, select, textarea
     color purp
     background #FFF
@@ -212,6 +212,7 @@ input::-moz-placeholder
     color: #ddd
 input:-ms-input-placeholder
     color: #ddd
+*/
 
 .new-resolution
     transition all 0.3s cubic-bezier(0.86, 0, 0.07, 1)
@@ -412,4 +413,12 @@ input:-ms-input-placeholder
 .imageThumb {
     width:200px;
     /* float:left; */
+}
+
+input[type="file"] {
+    display: inline;
+}
+
+.row {
+    margin-bottom:10px;
 }
