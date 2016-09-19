@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-export default class ResolutionSingle extends Component {
+export default class ResolutionSingle extends React.Component {
 
 	constructor() {
 		super();
 		this.state = {
 			text: '',
 			editing:false
-		}
+		};
 	}
 
 	toggleChecked() {

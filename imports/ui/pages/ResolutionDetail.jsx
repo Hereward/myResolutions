@@ -11,7 +11,7 @@ export default class ResolutionDetail extends TrackerReact(Component) {
 			subscription: {
 				resolutions: Meteor.subscribe("userResolutions")
 			}
-		}
+		};
 	}
 
 	componentWillUnmount() {
