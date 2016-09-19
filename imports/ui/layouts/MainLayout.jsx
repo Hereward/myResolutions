@@ -34,7 +34,7 @@ export default class MainLayout extends React.Component {
 						</nav>
 					</header>
 					<main>
-						
+						{this.props.children}
 					</main>
 				</div>
 			);

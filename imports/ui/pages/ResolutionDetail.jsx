@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import TrackerReact from 'meteor/ultimatejs:tracker-react';
+//import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { Resolutions } from '../../api/resolutions.js';
 import { Images } from '../../api/images.js';
 import UploadForm from '../components/UploadForm.jsx';
 
-export default class ResolutionDetail extends TrackerReact(Component) {
+export default class ResolutionDetail extends React.Component {
 	constructor() {
 		super();
 		this.state = {

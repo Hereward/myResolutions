@@ -24,7 +24,7 @@ shell-server@0.2.1            # Server-side component of the `meteor shell` comm
 twbs:bootstrap
 npm-bcrypt
 meteortoys:allthings
-ultimatejs:tracker-react
+#ultimatejs:tracker-react
 # kadira:flow-router
 stolinski:stylus-multi
 accounts-ui
