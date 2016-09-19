@@ -2,7 +2,7 @@ import React from 'react';
 //import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { Resolutions } from '../../api/resolutions.js';
+//import { Resolutions } from '../../api/resolutions.js';
 
 import ResolutionsForm from '../components/ResolutionsForm.jsx';
 import ResolutionSingle from '../components/ResolutionSingle.jsx';
@@ -104,7 +104,7 @@ export default class Index extends React.Component {
 
 
 	render() {
-        console.log(this.props);
+        //console.log(this.props);
 		return (
 			<ReactCSSTransitionGroup
 				component="div"

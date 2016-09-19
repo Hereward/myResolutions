@@ -14,6 +14,13 @@ export default class MainLayout extends React.Component {
 		super();
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		//return nextProps.id !== this.props.id;
+		return false;
+	}
+
+
+
 	componentDidMount() {
         //console.log(this.props);
     }

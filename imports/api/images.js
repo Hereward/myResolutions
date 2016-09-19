@@ -20,7 +20,7 @@ export const Images = new Meteor.Files({
 		  }
 });
 
-console.log(Images);
+//console.log(Images);
 //var myImages = new Mongo.Collection('Images');
 
 
