@@ -31,9 +31,9 @@ accounts-ui
 accounts-password
 themeteorchef:bert
 check
-#gwendall:blaze-to-react
+# gwendall:blaze-to-react
 ostrio:files
-reactive-dict
+# reactive-dict
 underscore
 react-meteor-data
 
