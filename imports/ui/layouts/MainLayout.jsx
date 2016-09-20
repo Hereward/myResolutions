@@ -1,6 +1,7 @@
 import React from 'react';
 import AccountsUI from '../../startup/both/AccountsUI.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
+import { Link } from 'react-router';
 
 //import {MainLayout} from './MainLayout.jsx';
 //import { Loading } from '../components/Loading.js';
@@ -14,10 +15,13 @@ export default class MainLayout extends React.Component {
 		super();
 	}
 
+/*
 	shouldComponentUpdate(nextProps, nextState) {
 		//return nextProps.id !== this.props.id;
-		return false;
+	
 	}
+
+	*/
 
 
 
@@ -35,8 +39,8 @@ export default class MainLayout extends React.Component {
 					<header>
 						<h2>My Resolutions</h2>
 						<nav>
-							<a href="/"><i className="fa fa-home"></i></a>
-							<a href="/about">About</a>
+							<Link to="/"><i className="fa fa-home"></i></Link>
+							<Link to="/about">About</Link>
 							<AccountsUI />
 						</nav>
 					</header>

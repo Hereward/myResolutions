@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Link, Router, Route, IndexRoute, browserHistory } from 'react-router';
 import AppContainer from '../../ui/containers/AppContainer.jsx';
 import ResolutionsContainer from '../../ui/containers/ResolutionsContainer.jsx';
 import Index from '../../ui/pages/Index.jsx';
