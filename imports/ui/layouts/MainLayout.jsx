@@ -3,37 +3,17 @@ import AccountsUI from '../../startup/both/AccountsUI.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Link } from 'react-router';
 
-//import {MainLayout} from './MainLayout.jsx';
-//import { Loading } from '../components/Loading.js';
-
-
-
-
 export default class MainLayout extends React.Component {
 
 	constructor() {
 		super();
 	}
 
-/*
-	shouldComponentUpdate(nextProps, nextState) {
-		//return nextProps.id !== this.props.id;
-	
-	}
-
-	*/
-
-
-
 	componentDidMount() {
-        //console.log(this.props);
+         
     }
-
 	
-
 	render() {
-
-            //console.log(this.props);
 			return (
 				<div className="main-layout">
 					<header>
@@ -52,6 +32,21 @@ export default class MainLayout extends React.Component {
 	}
 	
 }
+
+//import {MainLayout} from './MainLayout.jsx';
+//import { Loading } from '../components/Loading.js';
+
+
+
+/*
+	shouldComponentUpdate(nextProps, nextState) {
+		//return nextProps.id !== this.props.id;
+	
+	}
+
+*/
+
+
 
 // {this.props.children}
 
