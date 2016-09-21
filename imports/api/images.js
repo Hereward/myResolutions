@@ -36,6 +36,28 @@ if (Meteor.isServer) {
   //Meteor.subscribe('allImages');
 }
 
+// Meteor.call('RemoveFile', this.props.fileId, function (err, res) {
+
+Meteor.methods({
+    RemoveFile(fileId) {
+    /*
+    check(resolution, String);
+
+    if(!Meteor.userId()) {
+      throw new Meteor.Error('not-authorized');
+    }
+    */
+
+    Images.remove({_id: fileId});
+
+  },
+  
+  RenameFile(fileId) {
+
+  }
+
+});
+
 
 
 /*

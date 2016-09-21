@@ -164,6 +164,7 @@ export default class ResolutionSingle extends React.Component {
             fileUrl={link}
             fileId={aFile._id}
             fileSize={aFile.size}
+            Images={this.props.Images}
             />
         </div>;
       });

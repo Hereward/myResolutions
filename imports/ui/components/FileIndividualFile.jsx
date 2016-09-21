@@ -1,26 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Meteor} from 'meteor/meteor';
 
-const IndividualFile = React.createClass({
+export default class ResolutionSingle extends React.Component {
 
+/*
   propTypes: {
     fileName: React.PropTypes.string.isRequired,
     fileSize: React.PropTypes.number.isRequired,
     fileUrl: React.PropTypes.string,
     fileId: React.PropTypes.string.isRequired
-  },
-
+  }
+*/
 
   removeFile(){
     "use strict";
     let conf = confirm('Are you sure you want to delete the file?') || false;
     if (conf == true) {
+      //this.props.Images.remove({_id: this.props.fileId});
+      
       Meteor.call('RemoveFile', this.props.fileId, function (err, res) {
         if (err)
           console.log(err);
       });
+      
     }
-  },
+  }
 
 
   renameFile(){
@@ -41,7 +45,7 @@ const IndividualFile = React.createClass({
           console.log(err);
       });
     }
-  },
+  }
 
   render() {
 
@@ -56,19 +60,12 @@ const IndividualFile = React.createClass({
 
       <div className="row">
         <div className="col-md-3">
-          <button onClick={this.renameFile} className="btn btn-outline btn-primary btn-sm">
-            Rename
-          </button>
-        </div>
-
-
-        <div className="col-md-3">
           <a href={this.props.fileUrl} className="btn btn-outline btn-primary btn-sm"
              target="_blank">View</a>
         </div>
 
         <div className="col-md-2">
-          <button onClick={this.removeFile} className="btn btn-outline btn-danger btn-sm">
+          <button onClick={this.removeFile.bind(this)} className="btn btn-outline btn-danger btn-sm">
             Delete
           </button>
         </div>
@@ -77,9 +74,16 @@ const IndividualFile = React.createClass({
           Size: {this.props.fileSize}
         </div>
       </div>
-    </div>
+    </div>;
   }
-});
-export default IndividualFile;
+}
 
-//<strong>{this.props.fileUrl}</strong>
+/*
+ <div className="col-md-3">
+          <button onClick={this.renameFile.bind(this)} className="btn btn-outline btn-primary btn-sm">
+            Rename
+          </button>
+        </div>
+*/
+
+
