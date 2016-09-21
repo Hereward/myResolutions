@@ -6,7 +6,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ResolutionsForm from '../components/ResolutionsForm.jsx';
 import ResolutionSingle from '../components/ResolutionSingle.jsx';
-import { Images } from '../../api/images.js';
+//import { Images } from '../../api/images.js';
 
 import { Loading } from '../components/Loading.js';
 
@@ -59,7 +59,7 @@ export default class Index extends React.Component {
 				let link = '';
 				if (resolution.image_id) {
 					console.log(`Image ID = ${resolution.image_id}`);
-					let Obj = Images.findOne({ _id: resolution.image_id });
+					let Obj = this.props.Images.findOne({ _id: resolution.image_id });
 					if (Obj) {
 						link = Obj.link();
 						console.log(`LINK = ${link}`);

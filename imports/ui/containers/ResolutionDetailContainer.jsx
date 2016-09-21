@@ -7,17 +7,27 @@ import MainLayout from '../layouts/MainLayout.jsx';
 
 import { Resolutions } from '../../api/resolutions.js';
 import { Images } from '../../api/images.js';
-import Index from '../../ui/pages/Index.jsx';
+import ResolutionDetail from '../../ui/pages/ResolutionDetail.jsx';
 
 
 
-export default createContainer(() => {
+export default createContainer(({ params }) => {
   const resSub = Meteor.subscribe('userResolutions'); 
   const imgSub = Meteor.subscribe('allImages'); 
   const loading = !resSub.ready() || !imgSub.ready() ;
   //const loading = !resSub.ready();
-  const myResolutions = Resolutions.find().fetch();
+  const Resolution = Resolutions.findOne(params.id);
+  let myImages = '';
+  //const Image = Images.findOne({ _id: Resolution.image_id });
+  if (Resolution) {
+  	myImages = Images.find({ _id: Resolution.image_id }).fetch();
+  }
+   
+			
+  console.log(Resolution);
+  console.log(Image);
+
   const connected = Meteor.status().connected;
 
-  return {Images, myResolutions, loading, resSub, imgSub, connected };
-}, Index);
+  return {Images, Resolution, myImages, loading, resSub, imgSub, connected };
+}, ResolutionDetail);

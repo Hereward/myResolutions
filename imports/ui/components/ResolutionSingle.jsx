@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 
 export default class ResolutionSingle extends React.Component {
 
@@ -63,7 +64,7 @@ export default class ResolutionSingle extends React.Component {
 					onClick={this.toggleChecked.bind(this)} />
 
 					
-					&nbsp; <a href={`/resolutions/${this.props.resolution._id}`}><i className={"fa fa-image imageIcon"}>&nbsp;</i></a>
+					&nbsp; <Link to={`/resolutions/${this.props.resolution._id}`}><i className={"fa fa-image imageIcon"}>&nbsp;</i></Link>
 					&nbsp; <i onClick={this.editResolution.bind(this)} className="fa fa-edit editIcon"></i> &nbsp;
 					<i onClick={this.saveResolution.bind(this)} className={"fa fa-check-square saveIcon " + saveIconClass}>&nbsp;</i>
 					<span className={resolutionTextClass}>{this.props.resolution.text}</span>

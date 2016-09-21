@@ -1,40 +1,54 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Meteor} from 'meteor/meteor';
 import IndividualFile from './FileIndividualFile.jsx';
 import {_} from 'meteor/underscore';
-import { Images } from '../../api/images.js';
-import { Resolutions } from '../../api/resolutions.js';
+//import { Images } from '../../api/images.js';
 
-const UploadForm = React.createClass({
-  mixins: [ReactMeteorData],
 
+export default class ResolutionSingle extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      uploading: [],
+      progress: 0,
+      inProgress: false
+    };
+  }
+
+/*
   getInitialState() {
     return {
       uploading: [],
       progress: 0,
       inProgress: false
     };
-  },
+  }
+
+  */
 
   updateResolution(fileObj) {
-    console.log(`updateResolution: ResolutionID = ${this.props.resolution._id} ImageID = ${fileObj._id}`);
-    Meteor.call('updateResolutionImage', this.props.resolution, fileObj._id);
+    console.log(`updateResolution: ResolutionID = ${this.props.Resolution._id} ImageID = ${fileObj._id}`);
+    Meteor.call('updateResolutionImage', this.props.Resolution, fileObj._id);
 
-  },
+  }
 
+/*
   getMeteorData() {
-    console.log(`getMeteorData: IMAGE ID= ${this.props.resolution.image_id}`);
+    console.log(`getMeteorData: IMAGE ID= ${this.props.Resolution.image_id}`);
 
     var handle = Meteor.subscribe('allImages');
     return {
       docsReadyYet: handle.ready(),
-      docs: Images.find({ _id: this.props.resolution.image_id }).fetch()
+      docs: Images.find({ _id: this.props.Resolution.image_id }).fetch()
     };
-  },
+  }
+
+  */
 
   getFromServer(e) {
 
-  },
+  }
 
   uploadIt(e) {
     "use strict";
@@ -48,7 +62,7 @@ const UploadForm = React.createClass({
       var file = e.currentTarget.files[0];
 
       if (file) {
-        let uploadInstance = Images.insert({
+        let uploadInstance = this.props.Images.insert({
           file: file,
           meta: {
             locator: self.props.fileLocator,
@@ -104,7 +118,7 @@ const UploadForm = React.createClass({
         uploadInstance.start(); // Must manually start the upload
       }
     }
-  },
+  }
 
   // This is our progress bar, bootstrap styled
   // Remove this function if not needed
@@ -126,13 +140,14 @@ const UploadForm = React.createClass({
         </div>
       </div>;
     }
-  },
+  }
 
   render() {
-    if (this.data.docsReadyYet) {
+    if (!this.props.loading) {
       'use strict';
 
-      let fileCursors = this.data.docs;
+      //let fileCursors = this.data.docs;
+      let fileCursors = this.props.myImages;
 
       // Run through each file that the user has stored
       // (make sure the subscription only sends files owned by this user)
@@ -140,7 +155,7 @@ const UploadForm = React.createClass({
       let showit = fileCursors.map((aFile, key) => {
         // console.log('A file: ', aFile.link(), aFile.get('name'));
 
-        let link = Images.findOne({ _id: aFile._id }).link();  //The "view/download" link
+        let link = this.props.Images.findOne({ _id: aFile._id }).link();  //The "view/download" link
 
         // Send out components that show details of each file
         return <div key={'file' + key}>
@@ -153,13 +168,12 @@ const UploadForm = React.createClass({
         </div>;
       });
 
-//<span>RES ID =  {this.props.resolution._id} </span>
       return <div> 
         <div className="row">
           <div className="col-md-12">
             <p><strong>Upload New File: </strong></p>
             <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
-              onChange={this.uploadIt}/>  
+              onChange={this.uploadIt.bind(this)}/>  
               <span> &nbsp; <input type="button" id="getfromserver" ref="getfromserver"
               onClick={this.getFromServer} value="Get from server" /></span>
           </div>
@@ -181,7 +195,5 @@ const UploadForm = React.createClass({
     }
     else return <div><span>Loading...</span></div>;
   }
-});
-console.log("hello");
 
-export default UploadForm;
+}

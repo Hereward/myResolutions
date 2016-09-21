@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Link, Router, Route, IndexRoute, browserHistory } from 'react-router';
 import AppContainer from '../../ui/containers/AppContainer.jsx';
 import ResolutionsContainer from '../../ui/containers/ResolutionsContainer.jsx';
+import ResolutionDetailContainer from '../../ui/containers/ResolutionDetailContainer.jsx';
 import Index from '../../ui/pages/Index.jsx';
 import About from '../../ui/pages/About.jsx';
 import ResolutionDetail from '../../ui/pages/ResolutionDetail.jsx';
@@ -14,7 +15,7 @@ export const renderRoutes = () => (
     <Route path="/" component={MainLayout}>
       <IndexRoute component={ResolutionsContainer} />
       <Route path="/about" component={About} />
-      <Route path="/resolutions/:id" component={ResolutionDetail} />
+      <Route path="/resolutions/:id" component={ResolutionDetailContainer} />
     </Route>
   </Router>
 );
