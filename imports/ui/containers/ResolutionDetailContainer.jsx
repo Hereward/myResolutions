@@ -18,16 +18,21 @@ export default createContainer(({ params }) => {
   //const loading = !resSub.ready();
   const Resolution = Resolutions.findOne(params.id);
   let myImages = '';
+  let getData = true;
   //const Image = Images.findOne({ _id: Resolution.image_id });
   if (Resolution) {
   	myImages = Images.find({ _id: Resolution.image_id }).fetch();
+    if (Resolution.remoteData) {
+      console.log("GOT MONGO",Resolution);
+      getData = false;
+    }
   }
    
 			
   console.log(Resolution);
   console.log(Image);
 
-  const connected = Meteor.status().connected;
+  let connected = Meteor.status().connected;
 
-  return {Images, Resolution, myImages, loading, resSub, imgSub, connected };
+  return {Images, Resolution, myImages, loading, resSub, imgSub, connected, getData };
 }, ResolutionDetail);

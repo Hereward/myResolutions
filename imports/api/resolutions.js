@@ -41,6 +41,15 @@ Meteor.methods({
 			$set: {text: newValue}
 		});	
 	},
+	updateResolutionRemoteData(resolution, newValue) {
+		check(resolution, Object);
+		if(!Meteor.userId()) {
+			throw new Meteor.Error('not-authorized');
+		}
+		Resolutions.update(resolution._id, {
+			$set: {RemoteData: newValue}
+		});	
+	},
 	updateResolutionImage(resolution, newValue) {
 		check(resolution, Object);
 		if(!Meteor.userId()) {
