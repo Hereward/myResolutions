@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { HTTP } from 'meteor/http';
+import axios from 'axios';
+import fs from 'fs';
 
 export default class RemoteData extends React.Component {
 
@@ -15,6 +17,56 @@ export default class RemoteData extends React.Component {
 		this.DataURL = 'http://jsonplaceholder.typicode.com/posts/1';
 		console.log("RemoteData constructor");
 		
+	}
+
+	fetchImage() {
+		console.log('fetching image');
+		Meteor.call('getImage', this.props.Resolution);
+		//responseType: 'json',
+		//let url = 'http://www.getcommandofit.com.au/assets/Uploads/tuna-nicoise.png';
+
+
+
+
+/*
+	let promise = new Promise(
+		(resolve, reject) => {
+			console.log("CALL SERVICE");
+			HTTP.call(
+				'GET', url, 
+		    	{npmRequestOptions: {encoding: null}},
+				(error, result) => {
+					if (error) {
+						reject(error);
+					} else {
+						resolve(result);
+					}
+				});
+		}
+	);
+
+	promise.then(function(result) {
+		console.log('Got IMAGE data!', result);
+
+
+	}.bind(this)).catch(function(error) {
+		console.log('IMAGE Error occurred!', error);
+		throw new Meteor.Error('500', `${error.message}`);
+	});
+
+	*/
+
+		  /*
+
+		axios.get(url)
+		  .then(function (response) {
+		    console.log(response);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		});
+
+		*/
 	}
 
 
@@ -43,6 +95,8 @@ export default class RemoteData extends React.Component {
 	          		data: result.data
 	            });
 	            this.updateDB();
+	            this.fetchImage();
+	            	            
 
 			}.bind(this)).catch(function(error) {
 				console.log('Error occurred!', error);
