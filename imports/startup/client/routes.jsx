@@ -6,7 +6,7 @@ import ResolutionsContainer from '../../ui/containers/ResolutionsContainer.jsx';
 import ResolutionDetailContainer from '../../ui/containers/ResolutionDetailContainer.jsx';
 import Index from '../../ui/pages/Index.jsx';
 import About from '../../ui/pages/About.jsx';
-import RemoteDataContainer from '../../ui/containers/RemoteDataContainer.jsx';
+//import RemoteDataContainer from '../../ui/containers/RemoteDataContainer.jsx';
 import ResolutionDetail from '../../ui/pages/ResolutionDetail.jsx';
 import MainLayout from '../../ui/layouts/MainLayout.jsx';
 
@@ -17,10 +17,11 @@ export const renderRoutes = () => (
       <IndexRoute component={ResolutionsContainer} />
       <Route path="/about" component={About} />
       <Route path="/resolutions/:id" component={ResolutionDetailContainer} />
-      <Route path="/remote" component={RemoteDataContainer} />
     </Route>
   </Router>
 );
+
+//<Route path="/remote" component={RemoteDataContainer} />
 
 
 /*

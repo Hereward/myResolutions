@@ -21,7 +21,6 @@ export default class MainLayout extends React.Component {
 						<nav>
 							<Link to="/"><i className="fa fa-home"></i></Link>
 							<Link to="/about">About</Link>
-							<Link to="/remote">Remote Data</Link>
 							<AccountsUI />
 						</nav>
 					</header>
