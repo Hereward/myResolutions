@@ -54,6 +54,8 @@ export default class ResolutionSingle extends React.Component {
 		const hiddenInputClass = this.state.editing ? "hiddenInputShow" : "";
 		const resolutionTextClass = this.state.editing ? "resolutionTextEditing" : "resolutionText";
 
+		const resolutionImage = this.props.resolution.RemoteData ? <div><img className='imageThumb' src={this.props.link} alt='image' /></div> : '';
+
 
 		return (
 			<li className={resolutionClass}>
@@ -80,7 +82,7 @@ export default class ResolutionSingle extends React.Component {
 					onClick={this.deleteResolution.bind(this)}>
 					&times;
 				</button>
-				<br/> <img className='imageThumb' src={this.props.link} alt='image' />
+				{resolutionImage}
 
 			</li>
 		);
