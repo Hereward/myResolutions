@@ -22,57 +22,11 @@ export default class RemoteData extends React.Component {
 	fetchImage() {
 		console.log('fetching image');
 		Meteor.call('getImage', this.props.Resolution);
-		//responseType: 'json',
-		//let url = 'http://www.getcommandofit.com.au/assets/Uploads/tuna-nicoise.png';
-
-
-
-
-/*
-	let promise = new Promise(
-		(resolve, reject) => {
-			console.log("CALL SERVICE");
-			HTTP.call(
-				'GET', url, 
-		    	{npmRequestOptions: {encoding: null}},
-				(error, result) => {
-					if (error) {
-						reject(error);
-					} else {
-						resolve(result);
-					}
-				});
-		}
-	);
-
-	promise.then(function(result) {
-		console.log('Got IMAGE data!', result);
-
-
-	}.bind(this)).catch(function(error) {
-		console.log('IMAGE Error occurred!', error);
-		throw new Meteor.Error('500', `${error.message}`);
-	});
-
-	*/
-
-		  /*
-
-		axios.get(url)
-		  .then(function (response) {
-		    console.log(response);
-		  })
-		  .catch(function (error) {
-		    console.log(error);
-		});
-
-		*/
 	}
 
 
 	fetchData() {
 		console.log("fetchData called");
-			
 
 			let promise = new Promise(
 				(resolve, reject) => {
@@ -95,7 +49,7 @@ export default class RemoteData extends React.Component {
 	          		data: result.data
 	            });
 	            this.updateDB();
-	            //this.fetchImage();
+	            this.fetchImage();
 	            	            
 
 			}.bind(this)).catch(function(error) {

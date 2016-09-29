@@ -27,7 +27,7 @@ Meteor.methods({
     },
     getImage(resolution, myUrl) {
 
-      let url = myUrl || 'http://www.truthnews.com.au/storage/images/Cox_Roberts_ABC.jpg';
+      let url = myUrl || 'http://placehold.it/800x450';
       console.log("Fetching image from: "+url);
 
       axios({
