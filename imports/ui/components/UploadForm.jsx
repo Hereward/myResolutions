@@ -46,6 +46,14 @@ export default class ResolutionSingle extends React.Component {
 
   */
 
+
+
+  getImageFromServer() {
+    console.log('getImageFromServer');
+    let url = this.refs.getImageFromServerURL.value.trim();
+    Meteor.call('getImage', this.props.Resolution, url);
+  }
+
   getFromServer(e) {
 
   }
@@ -175,8 +183,9 @@ export default class ResolutionSingle extends React.Component {
             <p><strong>Upload New File: </strong></p>
             <input type="file" id="fileinput" disabled={this.state.inProgress} ref="fileinput"
               onChange={this.uploadIt.bind(this)}/>  
-              <span> &nbsp; <input type="button" id="getfromserver" ref="getfromserver"
-              onClick={this.getFromServer} value="Get from server" /></span>
+              <span> &nbsp; <input type="text" id="getImageFromServerURL" ref="getImageFromServerURL"
+               placeholder="Enter image URL" /> <input type="button" id="getImageFromServer" ref="getImageFromServer"
+              onClick={this.getImageFromServer.bind(this)} value="Get web image" /></span>
           </div>
         </div>
 

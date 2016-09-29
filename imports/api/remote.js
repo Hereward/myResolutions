@@ -25,8 +25,10 @@ Meteor.methods({
         throw new Meteor.Error('500', `${error.message}`);
       });
     },
-    getImage(resolution) {
-      let url = 'http://www.truthnews.com.au/storage/images/Cox_Roberts_ABC.jpg';
+    getImage(resolution, myUrl) {
+
+      let url = myUrl || 'http://www.truthnews.com.au/storage/images/Cox_Roberts_ABC.jpg';
+      console.log("Fetching image from: "+url);
 
       axios({
         method: 'get',

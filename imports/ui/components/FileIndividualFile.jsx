@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Meteor} from 'meteor/meteor';
 
-export default class ResolutionSingle extends React.Component {
+export default class FileIndividualFile extends React.Component {
 
 /*
   propTypes: {

@@ -30,7 +30,7 @@ export default createContainer(({ params }) => {
    
 			
   console.log(Resolution);
-  console.log(Image);
+  //console.log(Image);
 
   let connected = Meteor.status().connected;
 

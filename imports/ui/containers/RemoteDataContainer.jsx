@@ -1,4 +1,4 @@
-import RemoteData from '../../ui/pages/RemoteData.jsx';
+import RemoteData from '../../ui/components/RemoteData.jsx';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 

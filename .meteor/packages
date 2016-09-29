@@ -26,7 +26,7 @@ npm-bcrypt
 meteortoys:allthings
 #ultimatejs:tracker-react
 # kadira:flow-router
-stolinski:stylus-multi
+# stolinski:stylus-multi
 accounts-ui
 accounts-password
 themeteorchef:bert
@@ -37,4 +37,5 @@ ostrio:files
 underscore
 react-meteor-data
 http
+fourseven:scss
 
