@@ -95,7 +95,7 @@ export default class RemoteData extends React.Component {
 	          		data: result.data
 	            });
 	            this.updateDB();
-	            this.fetchImage();
+	            //this.fetchImage();
 	            	            
 
 			}.bind(this)).catch(function(error) {
